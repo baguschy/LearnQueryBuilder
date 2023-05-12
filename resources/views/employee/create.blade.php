@@ -54,7 +54,7 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="firstName" class="form-label">First Name</label>
-                            <input class="form-control @error('firstName') is-invalid @enderror" type="text" name="firstName" id="firstName" value="" aria-describedby="firstNameFeedBack" placeholder="Enter First Name">
+                            <input class="form-control @error('firstName') is-invalid @enderror" type="text" name="firstName" id="firstName" value="{{ old('firstName') }}" aria-describedby="firstNameFeedBack" placeholder="Enter First Name">
                             @error('firstName')
                                 <div id="firstNameFeedBack" class="invalid-feedback">
                                     {{ $message }}
@@ -63,7 +63,7 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="lastName" class="form-label">Last Name</label>
-                            <input class="form-control @error('lastName') is-invalid @enderror" type="text" name="lastName" id="lastName" value="" aria-describedby="LastNameFeedBack" placeholder="Enter Last Name">
+                            <input class="form-control @error('lastName') is-invalid @enderror" type="text" name="lastName" id="lastName" value="{{ old('lastName') }}" aria-describedby="LastNameFeedBack" placeholder="Enter Last Name">
                             @error('lastName')
                                 <div id="lastNameFeedBack" class="invalid-feedback">
                                     {{ $message }}
@@ -72,7 +72,7 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input class="form-control @error('email') is-invalid @enderror" type="text" name="email" id="email" value="" aria-describedby="emailFeedBack" placeholder="Enter Email">
+                            <input class="form-control @error('email') is-invalid @enderror" type="text" name="email" id="email" value="{{ old('email') }}" aria-describedby="emailFeedBack" placeholder="Enter Email">
                             @error('email')
                                 <div id="emailFeedBack" class="invalid-feedback">
                                     {{ $message }}
@@ -81,7 +81,7 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="age" class="form-label">Age</label>
-                            <input class="form-control @error('age') is-invalid @enderror" type="text" name="age" id="age" value="" aria-describedby="ageFeedBack" placeholder="Enter Age">
+                            <input class="form-control @error('age') is-invalid @enderror" type="text" name="age" id="age" value="{{ old('age') }}" aria-describedby="ageFeedBack" placeholder="Enter Age">
                             @error('age')
                                 <div id="ageFeedBack" class="invalid-feedback">
                                     {{ $message }}
