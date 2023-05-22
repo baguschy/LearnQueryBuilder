@@ -23,7 +23,7 @@ class EmployeeController extends Controller
 
         $employees = DB::table('employees')
                     ->leftJoin('positions', 'employees.position_id', '=', 'positions.id')
-                    ->get();
+                    ->get(['employees.*', 'positions.name']);
 
         return view('employee.index', compact('pageTitle', 'employees'));
     }
@@ -100,11 +100,13 @@ class EmployeeController extends Controller
      */
     public function edit(string $id)
     {
+        // dd($id);
         $pageTitle = ' Edit Employee';
 
         $employee = DB::table('employees')
             ->leftJoin('positions', 'employees.position_id', '=', 'positions.id')
-            ->where('employees.id', $id)->first();
+            ->where('employees.id', $id)->first(['employees.*', 'positions.name']);
+
 
         $positions = DB::table('positions')->get();
 
@@ -138,6 +140,7 @@ class EmployeeController extends Controller
             ->where('employees.id', $id)->first();
 
         if ($getEmployee->email == $request->email) {
+
             DB::table('employees')
             ->where('id', $id)
             ->update([
@@ -146,8 +149,22 @@ class EmployeeController extends Controller
                 'age' => $request->age,
                 'position_id' => $request->position,
             ]);
+
         }
         else{
+
+            $messages = [
+                'unique' => 'email sudah terpakai'
+            ];
+
+            $validator = Validator::make($request->all(), [
+                'email' => 'required|email|unique:employees',
+            ], $messages);
+
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
+
             DB::table('employees')
             ->where('id', $id)
             ->update([
