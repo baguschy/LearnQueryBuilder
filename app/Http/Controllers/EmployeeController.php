@@ -139,6 +139,9 @@ class EmployeeController extends Controller
             ->leftJoin('positions', 'employees.position_id', '=', 'positions.id')
             ->where('employees.id', $id)->first();
 
+
+        // cek input email
+
         if ($getEmployee->email == $request->email) {
 
             DB::table('employees')
